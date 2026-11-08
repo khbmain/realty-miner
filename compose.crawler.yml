@@ -1,0 +1,12 @@
+services:
+  crawler:
+    build:
+      context: .
+      dockerfile: Dockerfile.crawler
+    restart: unless-stopped
+    init: true
+    command: ["-pages", "3", "-delay", "5s", "-interval", "30m", "-out", "/data"]
+    volumes:
+      - crawler-data:/data
+volumes:
+  crawler-data:
